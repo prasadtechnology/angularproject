@@ -24,7 +24,7 @@ export class LmsformsComponent implements OnInit {
 
   ngOnInit() {
     this.myForm = this.fb.group({
-      email : ["",[Validators.required]],
+      email : ["",[Validators.required,Validators.email]],
       message : ["",[]],
       career:["",[  ]]
     });

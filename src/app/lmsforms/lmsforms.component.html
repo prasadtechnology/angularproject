@@ -4,7 +4,9 @@
   <div class="example-container">
     <mat-form-field>
       <input matInput placeholder="Input" formControlName="email">
-      <!--<mat-error *ngIf="email.invalid">Invalid</mat-error>-->
+      <mat-error ngxErrors="myForm.email">
+        Please enter valid email address
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
