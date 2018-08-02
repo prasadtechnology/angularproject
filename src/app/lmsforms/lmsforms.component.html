@@ -1,0 +1,25 @@
+<form [formGroup]="myForm" [hidden]="success" (ngSubmit)="handleFormSubmit()">
+
+  Value : {{ myForm.value | json }}
+  <div class="example-container">
+    <mat-form-field>
+      <input matInput placeholder="Input" formControlName="email">
+      <!--<mat-error *ngIf="email.invalid">Invalid</mat-error>-->
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea matInput placeholder="Textarea" formControlName="message"></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select placeholder="Select" formControlName="career">
+        <mat-option value="SE">SE</mat-option>
+        <mat-option value="TE">Testing</mat-option>
+        <mat-option value="DS">Datascience</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <button mat-raised-button [disabled]="myForm.invalid" color="Primary">Submit</button>
+</form>
+
