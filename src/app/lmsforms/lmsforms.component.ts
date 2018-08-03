@@ -1,17 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import {LmsFormsService} from "../lmsformsservice.service";
-import {FormBuilder, FormGroup,Validators} from "@angular/forms";
+import {Component, OnInit, Injectable} from '@angular/core';
+import { LmsFormsService } from "../lmsformsservice.service";
+import { FormBuilder, FormGroup,Validators } from "@angular/forms";
+import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireAuth } from 'angularfire2/auth';
+
 
 @Component({
   selector: 'app-lmsforms',
   templateUrl: './lmsforms.component.html',
   styleUrls: ['./lmsforms.component.css']
 })
+
 export class LmsformsComponent implements OnInit {
 
   myForm : FormGroup;
   test : any;
-  constructor(private lmsformsservice : LmsFormsService,private fb : FormBuilder) {
+  players : any;
+  constructor(private lmsformsservice : LmsFormsService,private fb : FormBuilder, private firebase : AngularFireDatabase) {
     // this.lmsformsservice.getFormData()
     //                 .subscribe(data => {
     //                             this.test = data;
@@ -20,6 +25,8 @@ export class LmsformsComponent implements OnInit {
     //                             error => {
     //                             console.log(error);
     //                             });
+    this.players = firebase.list("players");
+    console.log(this.players);
   }
 
   ngOnInit() {

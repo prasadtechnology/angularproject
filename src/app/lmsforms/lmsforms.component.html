@@ -1,3 +1,9 @@
+<ul>
+  <li class="text" *ngFor="let player of players ">
+    {{player.$value}}
+  </li>
+</ul>
+
 <form [formGroup]="myForm" [hidden]="success" (ngSubmit)="handleFormSubmit()">
 
   Value : {{ myForm.value | json }}
