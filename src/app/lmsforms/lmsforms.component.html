@@ -1,12 +1,21 @@
-<ul>
-  <li class="text" *ngFor="let player of players ">
-    {{player.$value}}
-  </li>
-</ul>
-
+<table id="players">
+  <thead>
+  <th>Email</th>
+  <th>Carrer</th>
+  <th>Discription</th>
+  </thead>
+  <tbody>
+  <tr *ngFor="let t of players">
+    <td>{{ t.email }}</td>
+    <td>{{ t.career }}</td>
+    <td>{{ t.message }}</td>
+  </tr>
+  </tbody>
+</table>
+<br>
 <form [formGroup]="myForm" [hidden]="success" (ngSubmit)="handleFormSubmit()">
 
-  Value : {{ myForm.value | json }}
+  <!--Value : {{ myForm.value | json }}-->
   <div class="example-container">
     <mat-form-field>
       <input matInput placeholder="Input" formControlName="email">

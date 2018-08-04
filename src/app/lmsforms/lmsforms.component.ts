@@ -3,6 +3,7 @@ import { LmsFormsService } from "../lmsformsservice.service";
 import { FormBuilder, FormGroup,Validators } from "@angular/forms";
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -17,28 +18,22 @@ export class LmsformsComponent implements OnInit {
   test : any;
   players : any;
   constructor(private lmsformsservice : LmsFormsService,private fb : FormBuilder, private firebase : AngularFireDatabase) {
-    // this.lmsformsservice.getFormData()
-    //                 .subscribe(data => {
-    //                             this.test = data;
-    //                             console.log(data);
-    //                             },
-    //                             error => {
-    //                             console.log(error);
-    //                             });
-    this.players = firebase.list("players");
-    console.log(this.players);
+    firebase.list("test")
+            .valueChanges()
+            .subscribe(data => {console.log(data); this.players = data;});
   }
 
   ngOnInit() {
     this.myForm = this.fb.group({
       email : ["",[Validators.required,Validators.email]],
-      message : ["",[]],
-      career:["",[  ]]
+      message : ["",[Validators.required]],
+      career:["",[ Validators.required ]]
     });
     this.myForm.valueChanges.subscribe(console.log);
   }
 
   handleFormSubmit(): void{
-    console.log(this.myForm.value)
+    console.log(this.myForm.value);
+    this.firebase.list("/test").push(this.myForm.value);
   }
 }
