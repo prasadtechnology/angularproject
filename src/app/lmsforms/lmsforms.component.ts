@@ -1,9 +1,10 @@
-import {Component, OnInit, Injectable} from '@angular/core';
+import {Component, OnInit, Injectable, ViewChild} from '@angular/core';
 import { LmsFormsService } from "../lmsformsservice.service";
 import { FormBuilder, FormGroup,Validators } from "@angular/forms";
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs';
+import { MatSort,MatSortable, MatTableDataSource} from '@angular/material';
 
 
 @Component({
@@ -14,13 +15,21 @@ import { Observable } from 'rxjs';
 
 export class LmsformsComponent implements OnInit {
 
+  @ViewChild(MatSort) sort: MatSort;
   myForm : FormGroup;
   test : any;
   players : any;
+  displayedColumns = ["email","career","message"];
+  dataSource;
+
   constructor(private lmsformsservice : LmsFormsService,private fb : FormBuilder, private firebase : AngularFireDatabase) {
     firebase.list("test")
             .valueChanges()
-            .subscribe(data => {console.log(data); this.players = data;});
+            .subscribe(data => {
+              console.log(data);
+              this.dataSource = new MatTableDataSource(data);
+              this.dataSource.sort = this.sort;
+            });
   }
 
   ngOnInit() {

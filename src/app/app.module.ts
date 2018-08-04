@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule, MatFormFieldModule,MatSelectModule, MatButtonModule, MatCheckboxModule,
-  MatChipsModule } from  '@angular/material';
+  MatChipsModule,MatTableModule, MatSortModule } from  '@angular/material';
 import { AngularFireModule } from 'angularfire2'
 
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -24,7 +24,7 @@ import {firebaseConfig} from "../environments/firebase.config";
   ],
   imports: [
     AngularFireModule.initializeApp(firebaseConfig),AngularFireDatabaseModule,AngularFireAuthModule,
-    BrowserModule,HttpClientModule, BrowserAnimationsModule,MatInputModule,
+    BrowserModule,HttpClientModule, BrowserAnimationsModule,MatInputModule,MatTableModule,MatSortModule,
     ReactiveFormsModule,MatFormFieldModule,MatButtonModule,MatSelectModule,MatCheckboxModule,MatChipsModule
   ],
   providers: [LmsFormsService],
